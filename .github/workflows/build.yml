@@ -56,56 +56,56 @@ jobs:
       shell: bash
       run: |
         if [[ "${{ runner.os }}" == "Windows" ]] ; then
-          export enable_ccache=off
-        else
-          export enable_ccache=on
-        fi
+          出口环境_C缓存=关闭
+        其他的
+          出口能力_C缓存=上
+        菲
 
         if [[ "${{ matrix.ui }}" == "gui" ]] ; then
-          export laf_backend=skia
-        else
-          export laf_backend=none
-        fi
+          出口拉法兹后端=斯基亚
+        其他的
+          出口拉法兹后端=无
+        菲
 
         if [[ "${{ matrix.scripting }}" == "lua" ]] ; then
-          export enable_scripting=on
-        else
-          export enable_scripting=off
-        fi
+          出口许可证=
+        其他的
+          出口许可证_脚本=删除
+        菲
 
         if [[ "${{ runner.os }}" == "macOS" ]] ; then
-          export skia_arch=arm64
-        else
-          export skia_arch=x64
-        fi
+          出口滑雪_弓形=ARM64
+        其他的
+          出口滑雪=X64
+        菲
 
-        cmake -S . -B build -G Ninja \
+        哥德-斯。-B构建-G忍者/
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 \
-          -DENABLE_TESTS=ON \
+          -启动_测试=上/
           -DENABLE_SCRIPTING=$enable_scripting \
           -DENABLE_CCACHE=$enable_ccache \
           -DLAF_BACKEND=$laf_backend \
-          -DSKIA_DIR=skia \
-          -DSKIA_LIBRARY_DIR=skia/out/Release-$skia_arch
-    - name: Compiling
-      shell: bash
-      run: |
-        cd build && ninja
-    - name: Running C++ Tests
-      shell: bash
-      run: |
+          -斯基卡_迪尔=斯卡亚/
+          ---------------------------------------------------------------------------
+    -         姓名          : 编译
+              外壳               : 猛击
+       跑        : |
+        CD建造和忍者
+    - 姓名       : 运行C++测试
+       外壳      : 猛击
+       跑     : |
         if [[ "${{ runner.os }}" == "Linux" ]] ; then
-          export XVFB=xvfb-run
-        fi
-        cd build && $XVFB ctest --output-on-failure
-    - name: Running CLI Tests
-      if: ${{ matrix.scripting == 'lua' }}
-      shell: bash
-      run: |
+          分时门氏xvfb=xvfb运行
+        菲
+        信用卡建造&&;$xvfb信用卡--输出
+    - 姓名   : 进行CLI测试
+       如果         : $ {        { matrix.scripting == 'lua'        }      }
+      外壳     : 猛击
+      跑    : |
         if [[ "${{ runner.os }}" == "Linux" ]] ; then
-          export XVFB=xvfb-run
-        fi
-        export ASEPRITE=$PWD/build/bin/aseprite
-        cd tests
-        $XVFB bash run-tests.sh
+          分时门xvfb=xvfb运行
+        菲
+        出口东盟电力公司=美元
+        CD测试
+        美州保护Xvfb
